@@ -1,4 +1,5 @@
 import api, {route} from "@forge/api";
+import headers from './middlewares/headers.js'
 
 export async function run(event, context) {
   const issueId = event.issue.id;
@@ -52,9 +53,7 @@ function createBoard(event, projectName, filterId) {
 	return api.asApp()
 	.requestJira(route`/rest/agile/1.0/board`, {
 		method: 'GET',
-		headers: {
-			'Accept': 'application/json',
-		},
+		headers: headers,
 		/*body: JSON.stringify({
 			filterId: filterId,
 			location: {
